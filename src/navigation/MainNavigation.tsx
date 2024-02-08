@@ -3,10 +3,17 @@ import { WelcomeScreen } from "../screens/WelcomeScreen";
 import { Sign } from "../screens/Sign";
 import { LoginScreen } from '../screens/LoginScreen';
 import { VerificationCodeScreen } from '../screens/VerificationCodeScreen';
+import { Tabs } from './Tabs/Tabs';
 
 
 const MainNavigator = () => {
     const Stack = createStackNavigator();
+    const usuario = {
+        id: '1',
+        nombre: 'Juan',
+        apellido: 'Perez',
+        active: true,
+    }
     return (
         <Stack.Navigator
             initialRouteName="WelcomeScreen"
@@ -21,11 +28,14 @@ const MainNavigator = () => {
                 // },
 
             }}>
-            <Stack.Screen
+            {/* <Stack.Screen
                 name="WelcomeScreen"
                 component={WelcomeScreen}
                 options={{ headerShown: false }}
-            />
+            /> */}
+            <Stack.Screen name="WelcomeScreen" component={usuario.active ? Tabs : WelcomeScreen} options={{
+                headerShown: false,
+            }} />
             <Stack.Screen
                 name="Sign"
                 component={Sign}
@@ -43,9 +53,10 @@ const MainNavigator = () => {
             <Stack.Screen name="LoginScreen" component={LoginScreen} options={{
                 headerShown: false,
             }} />
-
+            <Stack.Screen name="Tabs" component={Tabs} options={{
+                headerShown: false,
+            }} />
         </Stack.Navigator>
-
     );
 }
 

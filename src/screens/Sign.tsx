@@ -6,10 +6,10 @@ import {
 } from "react-native";
 import theme from '../themes/theme';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { HeaderTitle } from "../components/HeaderTitle";
-import { ItemSeparator } from "../components/ItemSeparator";
+import { HeaderTitle } from "../components/Auth/HeaderTitle";
+import { ItemSeparator } from "../components/Auth/ItemSeparator";
 import { lineContry, menuCountries } from "../data/menuCountries";
-import { CardCountry } from "../components/CardCountry";
+import { CardCountry } from "../components/Auth/CardCountry";
 import { MenuCountry } from "../interface/dataCountry";
 import { BtnSingUp } from "../components/BtnSingUp";
 import { BackButton } from "../components/BackButton";

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, } from "react-native";
-import { MenuCountry } from '../interface/dataCountry';
+import { MenuCountry } from '../../interface/dataCountry';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 interface Props {

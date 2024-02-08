@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import theme from '../themes/theme';
-import { View, Text, StatusBar, StyleSheet, Modal, Dimensions, Image, TouchableOpacity } from "react-native";
+import { View, Text, StatusBar, StyleSheet, Modal, Dimensions, Image, TouchableOpacity, FlatList, Keyboard } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { InputCode } from "../components/Auth/InputCode";
-import { HeaderTitle } from "../components/HeaderTitle";
+import { HeaderTitle } from "../components/Auth/HeaderTitle";
 import Icon from "react-native-vector-icons/Ionicons";
 import { BtnIconSingUp } from "../components/Auth/BtnIconSingUp";
 import { CustomAlert } from "../components/CustomAlert";
@@ -17,6 +17,12 @@ export const VerificationCodeScreen = ({ navigation, route }: any) => {
     const [modalVisible, setModalVisible] = useState(true);
     const [isAlertVisible, setAlertVisible] = useState(false);
     const [counter, setCounter] = useState(12);
+    const [codes, setCodes] = useState([
+        { id: '1', text: '', disabled: false },
+        { id: '2', text: '', disabled: true },
+        { id: '3', text: '', disabled: true },
+        { id: '4', text: '', disabled: true },
+    ]);
 
     useEffect(() => {
         if (counter > 0) {
@@ -40,6 +46,19 @@ export const VerificationCodeScreen = ({ navigation, route }: any) => {
         }
     }, [isAlertVisible]);
 
+    useEffect(() => {
+        const isFilled = areAllFieldsFilled();
+        if (isFilled) {
+            {
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Tabs' }],
+                  });
+                //Keyboard.dismiss();
+            }
+        }
+    }, [codes]);
+
     const showAlert = () => {
         setAlertVisible(true);
     };
@@ -60,6 +79,29 @@ export const VerificationCodeScreen = ({ navigation, route }: any) => {
         showAlert();
     };
 
+
+   
+
+    const areAllFieldsFilled = () => {
+        return codes.every(code => code.text !== '');
+    };
+
+    const onChangeText = (id: string, text: string) => {
+        setCodes(codes.map((code, index, array) => {
+            if (code.id === id) {
+                const updatedCode = { ...code, text };
+                if (array[index + 1]) {
+                    array[index + 1] = { ...array[index + 1], disabled: false };
+                }
+                return updatedCode;
+            }
+            return code;
+        }));       
+        
+    };
+
+
+
     return (
         <>
             <StatusBar backgroundColor={modalVisible ? "rgba(128, 128, 128, 0.4)" : colors.background} barStyle="dark-content" />
@@ -68,10 +110,19 @@ export const VerificationCodeScreen = ({ navigation, route }: any) => {
                 <View style={{ ...styles.container, backgroundColor: colors.background }}>
                     <Text style={styles.titleScreen}>Escribe el codigo que recibiste al: {phoneNumber}</Text>
                     <View style={styles.containerInputCode}>
-                        <InputCode />
-                        <InputCode />
-                        <InputCode />
-                        <InputCode />
+                        <FlatList
+                            data={codes}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) => (
+                                <InputCode
+                                    onChange={(text) => onChangeText(item.id, text)}
+                                    textNumber={item.text}
+                                    disabled={item.disabled}
+                                    
+                                />
+                            )}
+                            horizontal={true}
+                        />
                     </View>
                     {counter === 0 ?
                         <TouchableOpacity activeOpacity={0.6} onPress={() => setModalVisible(true)}>
@@ -82,8 +133,7 @@ export const VerificationCodeScreen = ({ navigation, route }: any) => {
                     }
 
                 </View>
-                {/* <WhatsAppMessageSender /> */}
-                <SMSAppMessageSender />
+
             </View >
             <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={closeModal}>
                 <View style={{ height: screenHeight, backgroundColor: 'rgba(128, 128, 128, 0.4)' }}>
@@ -146,10 +196,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
     },
     containerInputCode: {
-        flexDirection: 'row',
-        marginHorizontal: 20,
-        justifyContent: 'space-between',
-        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 25,
     },
     titleScreen: {
         fontSize: 30,

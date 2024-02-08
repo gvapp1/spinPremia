@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, StatusBar, Image, Dimensions, TouchableOpacity, Alert, StyleProp, ScrollView } from 'react-native';
 import theme from '../themes/theme';
 import { BtnSingUp } from "../components/BtnSingUp";
-import { Carrusel } from "../components/Carrusel";
+import { Carrusel } from "../components/Auth/Carrusel";
 
 export const WelcomeScreen = ({ navigation }: any) => {
     const { height: screenHeight, width: screenWidth } = Dimensions.get('window');

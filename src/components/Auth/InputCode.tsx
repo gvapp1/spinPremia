@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 
-export const InputCode = () => {
+interface Props {
+    disabled: boolean;
+    textNumber: string;
+    onChange?: (text: string) => void;
+
+}
+export const InputCode = ({ onChange, disabled, textNumber }: Props) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [textNumber, setTextNumber] = useState('');
-    const onChangeText = (value: string) => {       
-        setTextNumber(value);
-    };
+
     return (
-        
-        <View>
-            <TextInput style={{ height: 40, fontSize: 30, marginBottom:20, fontWeight:'bold' }} 
-            placeholder={isFocused ? '' : '0'} 
-            textAlign="center" maxLength={1} keyboardType="number-pad"
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            value={textNumber}
-            onChangeText={value => onChangeText(value)}
-             />
+
+        <View style={{width:80}}>
+            <TextInput style={{ height: 50, fontSize: 30,  fontWeight: 'bold'  }}
+                placeholder={isFocused ? '' : '0'}
+                textAlign="center" maxLength={1} keyboardType="number-pad"
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                value={textNumber}              
+                onChangeText={(text: string) => onChange!(text)}
+                editable={!disabled}
+            />
             <View style={styles.containerLineModal}>
                 <View style={styles.lineModal}>
                 </View>
@@ -29,13 +33,14 @@ export const InputCode = () => {
 const styles = StyleSheet.create({
 
     containerLineModal: {
-        marginTop: 10,
+        marginTop:15,
         alignItems: 'center'
     },
     lineModal: {
-        backgroundColor: '#3F3F3F',
-        width: 60,
+        backgroundColor: '#3454DB',
+        width: 70,
         height: 1,
-        borderRadius: 10
+        borderRadius: 10,
+        
     },
 });
