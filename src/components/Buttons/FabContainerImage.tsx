@@ -20,11 +20,10 @@ export const FabContainerImage = ({ imagePath, title, onPress, subtitle, style =
 
     return (
         <View style={{
-            width: screenWidth - 50,
-            top: 50,
-            left: 20,
-            height: 100, justifyContent: 'center',
-            borderRadius: 15, backgroundColor: 'red'
+            width: screenWidth - 60,           
+            height: 85, justifyContent: 'center',
+            borderRadius: 15,
+            backgroundColor: style.backgroundColor,
         }}>
             <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles.container}>
                 <View style={styles.containerButton}>

@@ -16,7 +16,7 @@ export const WelcomeScreen = ({ navigation }: any) => {
                 <Image source={require('../assets/astronauta.jpeg')} style={{ width: screenWidth, height: '70%' }} />
             </View>
 
-            <View style={{ backgroundColor: colors.card, height: screenHeight * 0.41 }}>
+            <View style={{ backgroundColor: '#131A37', height: screenHeight * 0.41 }}>
                 <View style={{ height: '40%' }}>
                     <Carrusel />
                 </View>

@@ -14,17 +14,13 @@ export const FabImageAbsolute = ({ imagePath, text, onPress, style = {} }: Props
 
     return (
         <View style={{
-            width: 160, left: 100, height: 50, justifyContent: 'center',
-            alignItems: 'center', borderRadius: 15, backgroundColor: 'red'
+            width: 155, height: 50,           
+             borderRadius: 15,
+             backgroundColor: style.backgroundColor,
         }}>
             <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles.container}>
-                <View style={{ ...styles.containerButton, 
-                    // backgroundColor: style.backgroundColor
-                    backgroundColor: 'transparent'
-                     }}>
-                    <Image source={img?.img} style={styles.containerImage} />
-                </View>
-                <Text style={styles.text}>{text}</Text> 
+                <Image source={img?.img} style={styles.containerImage} />
+                <Text style={styles.text}>{text}</Text>
             </TouchableOpacity>
         </View>
 
@@ -32,36 +28,25 @@ export const FabImageAbsolute = ({ imagePath, text, onPress, style = {} }: Props
 }
 
 const styles = StyleSheet.create({
-    container: {
-        //backgroundColor: 'red',
-        //justifyContent: 'center',
-        alignItems: 'center',
-        //textAlign: 'center',
+    container: {       
+        alignItems: 'center',       
         flexDirection: 'row',
-        borderRadius: 100,
-        //backgroundColor: 'green',
-        
+        borderRadius: 100,       
     },
-    containerButton: {
+    containerImage: {        
         height: 40,
         width: 40,
-        borderRadius: 100,
-        //marginRight: 5
-        marginRight:10,
-        marginLeft: 20,
         top: -15,
-    },
-    containerImage: {
-        width: '100%',
-        height: '100%',
         borderRadius: 100,
+        marginLeft: 15,
+        backgroundColor: 'transparent'
     },
-    text: {
+    text: {       
         color: 'black',
-        //marginTop: 5,
-        //textAlign: 'center',
+        marginTop: 5,
+        textAlign: 'center',
         fontWeight: '600',
-        width: 100,
+        width: 75,
         height: 30,
     }
 });

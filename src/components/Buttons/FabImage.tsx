@@ -23,8 +23,7 @@ export const FabImage = ({ imagePath, text, onPress, style = {} }: Props) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'red',
+    container: {       
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -45,11 +44,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: 100,
-
     },
     text: {
-        color: 'black',
-        //marginTop: 5,
+        paddingTop:5,
+        color: 'black',       
         textAlign: 'center',
         fontWeight: '600'
     }

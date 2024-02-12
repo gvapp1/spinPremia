@@ -20,9 +20,7 @@ export const CardButton = ({ imagePath, title, onPress, subtitle, style = {} }: 
 
     return (
         <View style={{
-            width: screenWidth - 230,
-            top: 50,
-            left: 20,
+            width: screenWidth - 230,           
             height: 180,
             //justifyContent: 'center',
             borderRadius: 15, backgroundColor: 'red'

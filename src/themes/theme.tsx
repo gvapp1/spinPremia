@@ -5,9 +5,10 @@ const theme = {
         ...DefaultTheme.colors,
         primary: '#00B7C5',
         background: '#F5F6FA',
-        card: '#131A37',
+        //card: '#F5F5F7',
         text: '#FFFFFF',
-    },    
+        customCard: '#F5F5F7',
+    },
 }
 
 export default theme;
